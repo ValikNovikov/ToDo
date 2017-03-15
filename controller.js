@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 
 	$('#add').on('click', function () {
-
+		var listItem;
 		var $nTask = $('#new-task').val();
 
 		if ($nTask === '') {
@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 			$('.warning').hide();
 
-			var listItem = '<li>';
+			listItem = '<li>';
 			listItem += '<input type="checkbox">';
 			listItem += '<label>' + $nTask + '</label>';
 			listItem += '<input type="text" class="inputTask">';
