@@ -16,15 +16,15 @@ $(document).ready(function () {
 
 			$('.warning').hide();
 
-			var ListItem = '<li>';
-			ListItem += '<input type="checkbox">';
-			ListItem += '<label>' + $nTask + '</label>';
-			ListItem += '<input type="text" class="inputTask">';
-			ListItem += '<button class="edit">Edit</button>';
-			ListItem += '<button class="delete">Delete</button>';
-			ListItem += '</li>';
+			var listItem = '<li>';
+			listItem += '<input type="checkbox">';
+			listItem += '<label>' + $nTask + '</label>';
+			listItem += '<input type="text" class="inputTask">';
+			listItem += '<button class="edit">Edit</button>';
+			listItem += '<button class="delete">Delete</button>';
+			listItem += '</li>';
 
-			$('#incomplete-tasks').append(ListItem);
+			$('#incomplete-tasks').append(listItem);
 			$('.inputTask').val($nTask);
 
 			$('#new-task').val('');
