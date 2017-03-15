@@ -265,4 +265,7 @@ ul li.editMode label {
     .container{
         width: 90%;
     }
+    label{
+        word-break: break-all;
+    }
 }
