@@ -181,6 +181,9 @@ ul li.editMode label {
 .delete{
     float: right;
 }
+#contain{
+    padding-bottom: 5%
+}
 @media screen and (max-width: 550px) {
     h3, label[for='new-task'] {
         font-size: 25px;

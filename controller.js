@@ -24,12 +24,11 @@ $(document).ready(function () {
 			ListItem += '<button class="delete">Delete</button>';
 			ListItem += '</li>';
 
-			$('ul#incomplete-tasks').append(ListItem);
+			$('#incomplete-tasks').append(ListItem);
 			$('.inputTask').val($nTask);
 
 			$('#new-task').val('');
 		}
-		;
 		counter();
 	});
 
@@ -48,7 +47,7 @@ $(document).ready(function () {
 
 			parent.removeClass('editMode');
 		}
-		;
+
 
 	});
 
@@ -78,8 +77,8 @@ $(document).ready(function () {
 
 	function counter() {
 		var remainTask = $('#incomplete-tasks li').length;
-		$('#counter').hide().fadeIn(300).html(remainTask);
-	};
+		$('#counter').hide().fadeIn(300).text(remainTask);
+	}
 	counter();
 
 });
