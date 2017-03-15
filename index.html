@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <title>Title</title>
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- endinject -->
+</head>
+<body>
+
+<!--<div class="container">-->
+<!--<p><em>double click to cross an item off.</em></p>-->
+
+<!--<form name="toDoList">-->
+<!--<input type="text" name="ListItem"/>-->
+
+<!--</form>-->
+
+<!--<div id="button" >Create</div>-->
+
+<!--<br/>-->
+<!--<ol class="ItemList"></ol>-->
+
+
+<!--</div>-->
+
+<!--<div class="container">-->
+<!--<p><em>Tasks in progress</em></p>-->
+
+<!--&lt;!&ndash;<form name="toDoList">&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" name="ListItem"/>&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<button id="button1">Add</button>&ndash;&gt;-->
+<!--<br/>-->
+<!--<ol class="activeToDo"></ol>-->
+
+
+<!--</div>-->
+<div class="container" style="padding-bottom: 5%">
+
+    <label for="new-task">Add Item</label><input id="new-task" type="text">
+    <button id="add">Add</button>
+    <div class="warning"></div>
+    <div class="success"></div>
+</div>
+<div class="container">
+    <h3>To do
+        <span id="counter"></span></h3>
+    <ul id="incomplete-tasks">
+        <li><input type="checkbox"><label>Smoke</label><input type="text" value="Smoke">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </li>
+        <li><input type="checkbox"><label>Drink</label><input type="text" value="Drink">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </li>
+
+    </ul>
+</div>
+<div class="container">
+    <h3>Completed</h3>
+    <ul id="completed-tasks">
+        <li><input type="checkbox" checked><label>Learn English </label><input type="text">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </li>
+    </ul>
+</div>
+<!-- bower:js -->
+<script src="www/lib/jquery/dist/jquery.js"></script>
+<!-- endbower -->
+<!-- inject:js -->
+<script src="controller.js"></script>
+<!-- endinject -->
+</body>
+</html>

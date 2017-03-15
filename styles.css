@@ -1,0 +1,268 @@
+/*body {*/
+/*font: normal normal 13px/16px "Open Sans", sans-serif;*/
+/*background: #ccc;*/
+/*}*/
+
+/*.container{*/
+/*padding: 20px;*/
+/*width: 300px;*/
+/*margin: 0 auto;*/
+/*margin-top: 40px;*/
+/*background: white;*/
+/*border-radius: 5px;}*/
+
+/*form {*/
+/*display: inline-block;*/
+/*}*/
+
+/*input{*/
+/*padding: 4px 15px 4px 5px;*/
+/*}*/
+
+/*#button{*/
+/*display: inline-block;*/
+/*background-color: #3391fc;*/
+/*color:#ffffff;*/
+/*border-radius: 5px;*/
+/*text-align:center;*/
+/*margin-top:2px;*/
+/*padding: 5px 15px;*/
+/*}*/
+
+/*#button:hover{*/
+/*cursor: pointer;*/
+/*opacity: .8;}*/
+
+/*ol {padding-left: 20px;}*/
+
+/*ol li {padding: 5px;color:#000;}*/
+
+/*ol li:nth-child(even){background: #dfdfdf;}*/
+
+/*.strike{text-decoration: line-through;}*/
+
+/*li:hover{*/
+/*cursor: pointer;*/
+/*}*/
+/*li{*/
+/*border-bottom: solid 0.5px;*/
+/*}*/
+/*.makeActive{*/
+/*display:block;*/
+/*float: right;*/
+/*}*/
+
+/*.deleteBtn{*/
+/*float: right;*/
+/*}*/
+/*!*li:hover .makeActive{*!*/
+/*!*display: block;*!*/
+
+/*!*}*!*/
+
+body {
+    background: #fff;
+    color: #333;
+    font-family: "Times New Roman";
+}
+
+.container {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(240, 248, 255, 0.42);
+    border-radius: 15px;
+    margin-top: 6%;
+}
+
+.containerChild {
+    width: 33%;
+    display: inline-flex;
+}
+
+.message {
+    float: left;
+    margin-top: 10px;
+    display: none;
+}
+
+.warning {
+    color: #FF0000;
+    text-align: center;
+}
+
+.success {
+    color: #4DB84D;
+    text-align: center;
+}
+
+.message
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+h3 span {
+    background-color: #e43e4f;
+    color: #fff;
+
+    letter-spacing: 0;
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    height: 22px;
+    width: 26px;
+    padding: 4px 0 0 0;
+
+}
+
+li * {
+    float: left;
+}
+
+li, h3 {
+    clear: both;
+    list-style: none;
+}
+
+input, button {
+    outline: none;
+}
+
+button {
+    background: none;
+    border: 0px;
+    color: #888;
+    font-size: 15px;
+    width: 60px;
+    margin: 10px 0 0;
+    font-family: Lato, sans-serif;
+    cursor: pointer;
+}
+
+button:hover {
+    color: #333;
+}
+
+h3,
+label[for='new-task'] {
+    color: #333;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 30px 0 10px;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+input[type="text"] {
+    margin: 0;
+    font-size: 18px;
+    line-height: 18px;
+    height: 18px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 6px;
+    font-family: Lato, sans-serif;
+    color: #888;
+}
+
+input[type="text"]:focus {
+    color: #333;
+}
+
+label[for='new-task'] {
+    display: block;
+    margin: 0 0 20px;
+}
+
+input#new-task {
+    width: 50%;
+    margin-left: 20%;
+}
+
+p > button:hover {
+    color: #0FC57C;
+}
+
+li {
+    overflow: hidden;
+    padding: 20px 0;
+    border: 1px solid #eee;
+}
+
+li > input[type="checkbox"] {
+    margin: 0 10px;
+    position: relative;
+    top: 15px;
+}
+
+li > label {
+    font-size: 18px;
+    line-height: 40px;
+    width: 237px;
+    padding: 0 0 0 11px;
+}
+
+li > input[type="text"] {
+    width: 226px;
+}
+
+li > .delete:hover {
+    color: #CF2323;
+}
+
+#completed-tasks label {
+    text-decoration: line-through;
+    color: #888;
+}
+
+ul {
+    margin: 20px;
+    padding: 10px;
+}
+
+ul li input[type=text] {
+    display: none;
+}
+
+ul li.editMode input[type=text] {
+    display: block;
+}
+
+ul li.editMode label {
+    display: none;
+}
+.edit{
+    float: right;
+}
+.delete{
+    float: right;
+}
+@media screen and (max-width: 550px) {
+    h3, label[for='new-task'] {
+        font-size: 25px;
+    }
+    h3 span{
+        height: 33px;
+        width: 34px;
+    }
+    li >label{
+        width: 40%;
+    }
+    input#new-task{
+        margin-left: 14%;
+    }
+    button{
+        margin: 0;
+    }
+
+    ul li.editMode input[type=text] {
+        width: 35% !important;
+    }
+    .container{
+        width: 90%;
+    }
+}
