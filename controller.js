@@ -4,18 +4,18 @@ $(document).ready(function () {
 	$('#add').on('click', function () {
 		var listItem;
 		var newTaskTitle = $('#new-task').val();
-		var incopleteTask=$('#incomplete-tasks');
+		var incompleteTask=$('#incomplete-tasks');
 		var inputTask =$('.inputTask');
 		var newTask=$('#new-task');
 
 		function message(text,type) {
 			if(type ==='warning'){
 
-				$('.warning').html('<p class="fa fa-warning"></p> No task added').show();
+				$('.warning').html('<p class="fa fa-warning"></p>'+text).show();
 				$('.success').hide();
 
 			}else{
-				$('.success').html('<p class="fa fa-check"></p>Task added to list').fadeIn('slow').delay(500).fadeOut();
+				$('.success').html('<p class="fa fa-check"></p>'+text).fadeIn('slow').delay(500).fadeOut();
 				$('.warning').hide();
 			}
 		}
@@ -26,7 +26,6 @@ $(document).ready(function () {
 		} else {
 			message('Task added to list');
 
-
 			listItem = '<li>';
 			listItem += '<input type="checkbox">';
 			listItem += '<label>' + newTaskTitle + '</label>';
@@ -35,7 +34,7 @@ $(document).ready(function () {
 			listItem += '<button class="delete">Delete</button>';
 			listItem += '</li>';
 
-			incopleteTask.append(listItem);
+			incompleteTask.append(listItem);
 			inputTask.val(newTaskTitle);
 
 			newTask.val('');
@@ -49,7 +48,6 @@ $(document).ready(function () {
 		var parent = $(this).parent();
 
 		if (!parent.hasClass('editMode')) {
-			var edit = $('#editable').val();
 			parent.addClass('editMode');
 		} else if (parent.hasClass('editMode')) {
 
