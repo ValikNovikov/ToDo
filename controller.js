@@ -27,8 +27,6 @@ $(document).ready(function () {
 				listItem += '<button class="edit">Edit</button>';
 				listItem += '<button class="delete">Delete</button>';
 				listItem += '</li>';
-
-				// $(".input-value").prop("value",i.value);
 				$('#incomplete-tasks').append(listItem);
 				$('#li-with-id').attr("id", i.id);
 
@@ -100,18 +98,16 @@ $(document).ready(function () {
 			var labelText=editLabel.text();
 			editLabel.html(editTask);
 			parent.removeClass('editMode');
-			var deletingValue = JSON.parse(localStorage.getItem('savedToDo'));
-			deletingValue.map(function (i, index) {
+
+			var deleteValue = JSON.parse(localStorage.getItem('savedToDo'));
+			deleteValue.map(function (i, index) {
 				if (i.value == labelText) {
-					deletingValue[index].value=editTask;
-					localStorage.setItem('savedToDo', JSON.stringify(deletingValue));
+					deleteValue[index].value=editTask;
+					localStorage.setItem('savedToDo', JSON.stringify(deleteValue));
 				}
 
 			});
-
 		}
-
-
 	});
 	$('.task').on('change', 'input[type="checkbox"]', function () {
 
