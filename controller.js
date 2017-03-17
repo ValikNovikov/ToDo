@@ -1,48 +1,91 @@
 $(document).ready(function () {
 
 
-	$('#add').on('click', function () {
-		var listItem;
-		var newTaskTitle = $('#new-task').val();
-		var incompleteTask=$('#incomplete-tasks');
-		var inputTask =$('.inputTask');
-		var newTask=$('#new-task');
 
-		function message(text,type) {
-			if(type ==='warning'){
-
-				$('.warning').html('<p class="fa fa-warning"></p>'+text).show();
-				$('.success').hide();
-
-			}else{
-				$('.success').html('<p class="fa fa-check"></p>'+text).fadeIn('slow').delay(500).fadeOut();
-				$('.warning').hide();
-			}
+	//------saving data to local Storage--------//
+	function localStorageService(id, type, title) {
+		var savedToDo = JSON.parse(localStorage.getItem('savedToDo'));
+		if (savedToDo) {
+			savedToDo.push({id: id, type: type, value: title});
+			localStorage.setItem('savedToDo', JSON.stringify(savedToDo));
+		} else {
+			localStorage.setItem('savedToDo', JSON.stringify([{id: id, type: type, value: title}]));
 		}
 
+	}
+
+	//------getting data from local Storage--------//
+	function GetData() {
+		var savedItems = JSON.parse(localStorage.getItem('savedToDo'));
+		if (savedItems) {
+			savedItems.map(function (i) {
+				var newTaskTitle = i.value;
+				var listItem = '<li id="li-with-id">';
+				listItem += '<input type="checkbox">';
+				listItem += '<label for="inputTask">' + newTaskTitle + '</label>';
+				listItem += '<input type="text"  id="inputTask"/>';
+				listItem += '<button class="edit">Edit</button>';
+				listItem += '<button class="delete">Delete</button>';
+				listItem += '</li>';
+
+				$('#incomplete-tasks').append(listItem);
+				$('#li-with-id').attr("id", i.id);
+				$('#inputTask').attr("value",i.value);
+			})
+
+		}
+	}
+
+	GetData();
+
+	//----show-hide message----//
+	function message(text, type) {
+		if (type === 'warning') {
+
+			$('.warning').html('<p class="fa fa-warning"></p>' + text).show();
+			$('.success').hide();
+
+		} else {
+			$('.success').html('<p class="fa fa-check"></p>' + text).fadeIn('slow').delay(500).fadeOut();
+			$('.warning').hide();
+		}
+	}
+
+	//--------adding new To Do--------//
+	$('#add').on('click', function () {
+		var newTaskTitle = $('#new-task').val(),
+			id = new Date().getTime(),
+			incompleteTask = $('#incomplete-tasks'),
+			newTask = $('#new-task'),
+			inputTask = $('#inputTask'),
+			listItem;
+		listItem = '<li id="li-with-id">';
+		listItem += '<input type="checkbox">';
+		listItem += '<label for="inputTask">' + newTaskTitle + '</label>';
+		listItem += '<input type="text"  id="inputTask"/>';
+		listItem += '<button class="edit">Edit</button>';
+		listItem += '<button class="delete">Delete</button>';
+		listItem += '</li>';
+
+
 		if (newTaskTitle === '') {
-			message('No task added','warning');
+			message('No task added', 'warning');
 
 		} else {
 			message('Task added to list');
 
-			listItem = '<li>';
-			listItem += '<input type="checkbox">';
-			listItem += '<label>' + newTaskTitle + '</label>';
-			listItem += '<input type="text" class="inputTask"/>';
-			listItem += '<button class="edit">Edit</button>';
-			listItem += '<button class="delete">Delete</button>';
-			listItem += '</li>';
-
 			incompleteTask.append(listItem);
 			inputTask.val(newTaskTitle);
-
 			newTask.val('');
+			$('#inputTask').val(inputTask);
+			$('#li-with-id').attr("id", id);
+			localStorageService(id, 'incompleted', newTaskTitle)
 		}
 		updateCounter();
 	});
 
 
+	//-------editing task------//
 	$('.task').on('click', '.edit', function () {
 
 		var parent = $(this).parent();
@@ -59,8 +102,6 @@ $(document).ready(function () {
 
 
 	});
-
-
 	$('.task').on('change', 'input[type="checkbox"]', function () {
 
 		var grandpa = $(this).parent().parent();
@@ -78,17 +119,30 @@ $(document).ready(function () {
 	});
 
 
+	//------deleting task------//
 	$('.task').on('click', '.delete', function () {
-		$(this).parent().remove();
+		var data = $(this).parent();
+		var liId = data.attr("id");
+		data.remove();
+		var deletingTask = JSON.parse(localStorage.getItem('savedToDo'));
+		deletingTask.map(function (i, index) {
+			if (i.id == liId) {
+				deletingTask.splice(index, 1);
+				localStorage.setItem('savedToDo', JSON.stringify(deletingTask));
+			}
+
+		});
 		updateCounter();
 	});
 
 
+	//------updating counter------//
 	function updateCounter() {
 		var remainTask = $('#incomplete-tasks li').length;
 
 		$('#updateCounter').hide().text(remainTask).fadeIn(300);
 	}
+
 	updateCounter();
 
 });

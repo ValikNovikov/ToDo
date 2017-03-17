@@ -162,7 +162,7 @@ li input[type=text] {
     display: block;
 }
 
-li.editMode label {
+.editMode label {
     display: none;
 }
 
@@ -201,7 +201,7 @@ li.editMode label {
         margin: 0;
     }
 
-    ul li.editMode input[type=text] {
+    .editMode input[type=text] {
         width: 35% !important;
     }
 
