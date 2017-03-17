@@ -3,48 +3,59 @@ $(document).ready(function () {
 
 	$('#add').on('click', function () {
 		var listItem;
-		var $nTask = $('#new-task').val();
+		var newTaskTitle = $('#new-task').val();
+		var incopleteTask=$('#incomplete-tasks');
+		var inputTask =$('.inputTask');
+		var newTask=$('#new-task');
 
-		if ($nTask === '') {
+		function message(text,type) {
+			if(type ==='warning'){
 
-			$('.warning').html('<p class="fa fa-warning"></p> No task added').show();
+				$('.warning').html('<p class="fa fa-warning"></p> No task added').show();
+				$('.success').hide();
 
-			$('.success').hide();
+			}else{
+				$('.success').html('<p class="fa fa-check"></p>Task added to list').fadeIn('slow').delay(500).fadeOut();
+				$('.warning').hide();
+			}
+		}
+
+		if (newTaskTitle === '') {
+			message('No task added','warning');
+
 		} else {
+			message('Task added to list');
 
-			$('.success').html('<p class="fa fa-check"></p>Task added to list').fadeIn('slow').delay(500).fadeOut();
-
-			$('.warning').hide();
 
 			listItem = '<li>';
 			listItem += '<input type="checkbox">';
-			listItem += '<label>' + $nTask + '</label>';
-			listItem += '<input type="text" class="inputTask">';
+			listItem += '<label>' + newTaskTitle + '</label>';
+			listItem += '<input type="text" class="inputTask"/>';
 			listItem += '<button class="edit">Edit</button>';
 			listItem += '<button class="delete">Delete</button>';
 			listItem += '</li>';
 
-			$('#incomplete-tasks').append(listItem);
-			$('.inputTask').val($nTask);
+			incopleteTask.append(listItem);
+			inputTask.val(newTaskTitle);
 
-			$('#new-task').val('');
+			newTask.val('');
 		}
-		counter();
+		updateCounter();
 	});
 
 
-	$('ul').on('click', '.edit', function () {
+	$('.task').on('click', '.edit', function () {
 
 		var parent = $(this).parent();
 
 		if (!parent.hasClass('editMode')) {
+			var edit = $('#editable').val();
 			parent.addClass('editMode');
 		} else if (parent.hasClass('editMode')) {
 
 			var editTask = $(this).prev('input[type="text"]').val();
 			var editLabel = parent.find('label');
 			editLabel.html(editTask);
-
 			parent.removeClass('editMode');
 		}
 
@@ -52,7 +63,7 @@ $(document).ready(function () {
 	});
 
 
-	$('ul').on('change', 'input[type="checkbox"]', function () {
+	$('.task').on('change', 'input[type="checkbox"]', function () {
 
 		var grandpa = $(this).parent().parent();
 
@@ -65,20 +76,21 @@ $(document).ready(function () {
 			parent.remove();
 			$('#incomplete-tasks').append(parent);
 		}
-		counter();
+		updateCounter();
 	});
 
 
-	$('ul').on('click', '.delete', function () {
+	$('.task').on('click', '.delete', function () {
 		$(this).parent().remove();
-		counter();
+		updateCounter();
 	});
 
 
-	function counter() {
+	function updateCounter() {
 		var remainTask = $('#incomplete-tasks li').length;
-		$('#counter').hide().fadeIn(300).text(remainTask);
+
+		$('#updateCounter').hide().text(remainTask).fadeIn(300);
 	}
-	counter();
+	updateCounter();
 
 });

@@ -11,32 +11,45 @@
     <!-- endinject -->
 </head>
 <body>
-<div class="container" id="contain">
 
-    <label for="new-task">Add Item</label><input id="new-task" type="text">
+<div class="container" id="contain">
+    <label for="new-task">Add Item</label>
+    <input name="new-task" id="new-task" type="text"/>
     <button id="add">Add</button>
     <div class="warning"></div>
     <div class="success"></div>
 </div>
-<div class="container">
-    <h3>To do
-        <span id="counter"></span></h3>
-    <ul id="incomplete-tasks">
-        <li><input type="checkbox"><label>Smoke</label><input type="text" value="Smoke">
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-        </li>
-        <li><input type="checkbox"><label>Drink</label><input type="text" value="Drink">
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-        </li>
 
+<div class="container">
+
+    <h3>To do
+        <span id="updateCounter"></span>
+    </h3>
+
+    <ul id="incomplete-tasks" class="task">
+        <li>
+            <input type="checkbox"/>
+            <label for="smoke">Smoke</label>
+            <input name="smoke" id="smoke" type="text" value="Smoke"/>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </li>
+        <li>
+            <input name="make-unactive" type="checkbox"/>
+            <label for="drink">Drink</label>
+            <input name="drink" id="drink" type="text" value="Drink"/>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </li>
     </ul>
 </div>
 <div class="container">
     <h3>Completed</h3>
-    <ul id="completed-tasks">
-        <li><input type="checkbox" checked><label>Learn English </label><input type="text">
+    <ul id="completed-tasks" class="task">
+        <li>
+            <input name="checked" type="checkbox" checked/>
+            <label for="editable">Learn English </label>
+            <input name="editable" id="editable" value="Learn English" type="text"/>
             <button class="edit">Edit</button>
             <button class="delete">Delete</button>
         </li>

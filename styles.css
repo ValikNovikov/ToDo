@@ -1,46 +1,27 @@
-
-
 body {
     background: #fff;
     color: #333;
     font-family: "Times New Roman";
 }
 
-.container {
-    display: block;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    background: rgba(240, 248, 255, 0.42);
-    border-radius: 15px;
-    margin-top: 6%;
-}
-
-.containerChild {
-    width: 33%;
-    display: inline-flex;
-}
-
-.message {
-    float: left;
-    margin-top: 10px;
-    display: none;
-}
-
-.warning {
-    color: #FF0000;
-    text-align: center;
-}
-
-.success {
-    color: #4DB84D;
-    text-align: center;
-}
-
-.message
 ul {
-    margin: 0;
-    padding: 0;
+    margin: 20px;
+    padding: 10px;
+}
+
+li {
+    overflow: hidden;
+    padding: 20px 0;
+    border: 1px solid #eee;
+}
+
+li * {
+    float: left;
+}
+
+li, h3 {
+    clear: both;
+    list-style: none;
 }
 
 h3 span {
@@ -57,19 +38,6 @@ h3 span {
 
 }
 
-li * {
-    float: left;
-}
-
-li, h3 {
-    clear: both;
-    list-style: none;
-}
-
-input, button {
-    outline: none;
-}
-
 button {
     background: none;
     border: 0px;
@@ -84,6 +52,52 @@ button {
 button:hover {
     color: #333;
 }
+
+input, button {
+    outline: none;
+}
+
+p > button:hover {
+    color: #0FC57C;
+}
+
+.container {
+    display: block;
+    width: 80%;
+    margin:6% auto auto ;
+    background: rgba(240, 248, 255, 0.42);
+    border-radius: 15px;
+}
+.containerChild {
+    width: 33%;
+    display: inline-flex;
+}
+
+.message {
+    float: left;
+    margin-top: 10px;
+    display: none;
+}
+.message ul {
+    margin: 0;
+    padding: 0;
+}
+.warning {
+    color: #FF0000;
+    text-align: center;
+}
+.success {
+    color: #4DB84D;
+    text-align: center;
+}
+.edit {
+    float: right;
+}
+.delete {
+    float: right;
+}
+
+
 
 h3,
 label[for='new-task'] {
@@ -108,7 +122,6 @@ input[type="text"] {
     font-family: Lato, sans-serif;
     color: #888;
 }
-
 input[type="text"]:focus {
     color: #333;
 }
@@ -116,21 +129,6 @@ input[type="text"]:focus {
 label[for='new-task'] {
     display: block;
     margin: 0 0 20px;
-}
-
-input#new-task {
-    width: 50%;
-    margin-left: 20%;
-}
-
-p > button:hover {
-    color: #0FC57C;
-}
-
-li {
-    overflow: hidden;
-    padding: 20px 0;
-    border: 1px solid #eee;
 }
 
 li > input[type="checkbox"] {
@@ -154,61 +152,64 @@ li > .delete:hover {
     color: #CF2323;
 }
 
+li input[type=text] {
+    display: none;
+}
+
+
+
+.editMode input[type=text] {
+    display: block;
+}
+
+li.editMode label {
+    display: none;
+}
+
+#contain {
+    padding-bottom: 5%
+}
+
+#new-task {
+    width: 50%;
+    margin-left: 20%;
+}
+
 #completed-tasks label {
     text-decoration: line-through;
     color: #888;
 }
 
-ul {
-    margin: 20px;
-    padding: 10px;
-}
-
-ul li input[type=text] {
-    display: none;
-}
-
-ul li.editMode input[type=text] {
-    display: block;
-}
-
-ul li.editMode label {
-    display: none;
-}
-.edit{
-    float: right;
-}
-.delete{
-    float: right;
-}
-#contain{
-    padding-bottom: 5%
-}
 @media screen and (max-width: 550px) {
+    .container {
+        width: 90%;
+    }
     h3, label[for='new-task'] {
         font-size: 25px;
     }
-    h3 span{
+
+    h3 span {
         height: 33px;
         width: 34px;
     }
-    li >label{
+
+    li > label {
         width: 40%;
     }
-    input#new-task{
-        margin-left: 14%;
-    }
-    button{
+
+    button {
         margin: 0;
     }
 
     ul li.editMode input[type=text] {
         width: 35% !important;
     }
-    .container{
-        width: 90%;
-    }
-    label{
+
+    label {
         word-break: break-all;
+    }
+
+    input#new-task {
+        margin-left: 14%;
     }
 }
