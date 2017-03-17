@@ -23,17 +23,19 @@ $(document).ready(function () {
 				var listItem = '<li id="li-with-id">';
 				listItem += '<input type="checkbox">';
 				listItem += '<label for="inputTask">' + newTaskTitle + '</label>';
-				listItem += '<input type="text"  id="inputTask"/>';
+				listItem += '<input  type="text" value="' + i.value + '" class="input-value"/>';
 				listItem += '<button class="edit">Edit</button>';
 				listItem += '<button class="delete">Delete</button>';
 				listItem += '</li>';
 
+				// $(".input-value").prop("value",i.value);
 				$('#incomplete-tasks').append(listItem);
 				$('#li-with-id').attr("id", i.id);
-				$('#inputTask').attr("value",i.value);
-			})
+
+			});
 
 		}
+
 	}
 
 	GetData();
@@ -57,12 +59,12 @@ $(document).ready(function () {
 			id = new Date().getTime(),
 			incompleteTask = $('#incomplete-tasks'),
 			newTask = $('#new-task'),
-			inputTask = $('#inputTask'),
+			inputTask = $('#input-task'),
 			listItem;
 		listItem = '<li id="li-with-id">';
 		listItem += '<input type="checkbox">';
 		listItem += '<label for="inputTask">' + newTaskTitle + '</label>';
-		listItem += '<input type="text"  id="inputTask"/>';
+		listItem += '<input type="text" value="' + newTaskTitle + '"   class="input-value"/>';
 		listItem += '<button class="edit">Edit</button>';
 		listItem += '<button class="delete">Delete</button>';
 		listItem += '</li>';
@@ -73,12 +75,11 @@ $(document).ready(function () {
 
 		} else {
 			message('Task added to list');
-
 			incompleteTask.append(listItem);
-			inputTask.val(newTaskTitle);
-			newTask.val('');
-			$('#inputTask').val(inputTask);
+
 			$('#li-with-id').attr("id", id);
+			newTask.val('');
+
 			localStorageService(id, 'incompleted', newTaskTitle)
 		}
 		updateCounter();
@@ -94,10 +95,20 @@ $(document).ready(function () {
 			parent.addClass('editMode');
 		} else if (parent.hasClass('editMode')) {
 
-			var editTask = $(this).prev('input[type="text"]').val();
+			var editTask = $(this).prev('input[class="input-value"]').val();
 			var editLabel = parent.find('label');
+			var labelText=editLabel.text();
 			editLabel.html(editTask);
 			parent.removeClass('editMode');
+			var deletingValue = JSON.parse(localStorage.getItem('savedToDo'));
+			deletingValue.map(function (i, index) {
+				if (i.value == labelText) {
+					deletingValue[index].value=editTask;
+					localStorage.setItem('savedToDo', JSON.stringify(deletingValue));
+				}
+
+			});
+
 		}
 
 
