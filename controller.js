@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	var savedToDo = JSON.parse(localStorage.getItem('savedToDo')),
   incompleteTasks=$('#incomplete-tasks'),
-		completedTasks=$('#completed-tasks');
+	completedTasks=$('#completed-tasks');
 	if (!savedToDo) savedToDo = [];
 
 //------save and get data from/to local Storage--------//
@@ -27,7 +27,6 @@ $(document).ready(function () {
 					completedTasks.append(listItem);
 				}
 				$('#li-with-id').attr("id", i.id);
-
 			});
 		}
 	};
@@ -93,6 +92,8 @@ $(document).ready(function () {
 
 			});
 		}
+
+//-------change task type------//
 	}).on('change', '#changeType', function () {
 
 		var parent = $(this).parent();
@@ -118,10 +119,10 @@ $(document).ready(function () {
 			changeTaskType('incomplete')
 		}
 		updateCounter();
-	});
 
-	//------delete task------//
-	$('.task').on('click', '.delete', function () {
+		//------delete task------//
+
+	}).on('click', '.delete', function () {
 		var data = $(this).parent();
 		var liId = data.attr("id");
 		data.remove();
