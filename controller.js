@@ -1,5 +1,7 @@
 $(document).ready(function () {
-	var savedToDo = JSON.parse(localStorage.getItem('savedToDo'));
+	var savedToDo = JSON.parse(localStorage.getItem('savedToDo')),
+  incompleteTasks=$('#incomplete-tasks'),
+		completedTasks=$('#completed-tasks');
 	if (!savedToDo) savedToDo = [];
 
 //------save and get data from/to local Storage--------//
@@ -9,8 +11,8 @@ $(document).ready(function () {
 		},
 		getToDo: function () {
 			savedToDo.map(function (i) {
-				var newTaskTitle = i.value;
-				var listItem = '<li id="li-with-id">';
+				var newTaskTitle = i.value,
+				listItem = '<li id="li-with-id">';
 				listItem += '<input type="checkbox" id="changeType">';
 				listItem += '<label for="inputTask">' + newTaskTitle + '</label>';
 				listItem += '<input  type="text" value="' + i.value + '" class="input-value"/>';
@@ -19,10 +21,10 @@ $(document).ready(function () {
 				listItem += '</li>';
 
 				if (i.type == 'incomplete') {
-					$('#incomplete-tasks').append(listItem);
+					incompleteTasks.append(listItem);
 				} else {
 					$('#completed-tasks li').remove();
-					$('#completed-tasks').append(listItem);
+					completedTasks.append(listItem);
 				}
 				$('#li-with-id').attr("id", i.id);
 
@@ -59,7 +61,7 @@ $(document).ready(function () {
 		} else {
 			showMessage('Task added to list');
 			savedToDo.push({id: id, type: 'incomplete', value: newTaskTitle});
-			$('#incomplete-tasks').children().remove();
+			incompleteTasks.children().remove();
 			localStorageService.getToDo();
 			$('#li-with-id').attr("id", id);
 			newTask.val('');
@@ -108,11 +110,11 @@ $(document).ready(function () {
 
 		if (grandpa.is('#incomplete-tasks')) {
 			parent.remove();
-			$('#completed-tasks').append(parent);
+			completedTasks.append(parent);
 			changeTaskType('completed')
 		} else if (grandpa.is('#completed-tasks')) {
 			parent.remove();
-			$('#incomplete-tasks').append(parent);
+			incompleteTasks.append(parent);
 			changeTaskType('incomplete')
 		}
 		updateCounter();
