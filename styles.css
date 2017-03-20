@@ -1,3 +1,4 @@
+/*----General Styles-----*/
 body {
     background: #fff;
     color: #333;
@@ -14,90 +15,15 @@ li {
     padding: 20px 0;
     border: 1px solid #eee;
 }
-
 li * {
     float: left;
 }
 
-li, h3 {
+li,
+h3 {
     clear: both;
     list-style: none;
 }
-
-h3 span {
-    background-color: #e43e4f;
-    color: #fff;
-
-    letter-spacing: 0;
-    display: inline-block;
-    position: relative;
-    border-radius: 50%;
-    height: 22px;
-    width: 26px;
-    padding: 4px 0 0 0;
-
-}
-
-button {
-    background: none;
-    border: 0px;
-    color: #888;
-    font-size: 15px;
-    width: 60px;
-    margin: 10px 0 0;
-    font-family: Lato, sans-serif;
-    cursor: pointer;
-}
-
-button:hover {
-    color: #333;
-}
-
-input, button {
-    outline: none;
-}
-
-p > button:hover {
-    color: #0FC57C;
-}
-
-.container {
-    display: block;
-    width: 80%;
-    margin:6% auto auto ;
-    background: rgba(240, 248, 255, 0.42);
-    border-radius: 15px;
-}
-.containerChild {
-    width: 33%;
-    display: inline-flex;
-}
-
-/*.message {*/
-    /*float: left;*/
-    /*margin-top: 10px;*/
-    /*display: none;*/
-/*}*/
-/*.message ul {*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-/*}*/
-.warning {
-    color: #FF0000;
-    text-align: center;
-}
-.success {
-    color: #4DB84D;
-    text-align: center;
-}
-.edit {
-    float: right;
-}
-.delete {
-    float: right;
-}
-
-
 
 h3,
 label[for='new-task'] {
@@ -109,7 +35,6 @@ label[for='new-task'] {
     text-transform: uppercase;
     text-align: center;
 }
-
 input[type="text"] {
     margin: 0;
     font-size: 18px;
@@ -131,45 +56,91 @@ label[for='new-task'] {
     margin: 0 0 20px;
 }
 
-li > input[type="checkbox"] {
+ input[type="checkbox"] {
     margin: 0 10px;
     position: relative;
     top: 15px;
 }
 
-li > label {
+ label {
     font-size: 18px;
     line-height: 40px;
     width: 237px;
     padding: 0 0 0 11px;
 }
 
-li > input[type="text"] {
+input[type="text"] {
     width: 226px;
 }
 
-li > .delete:hover {
-    color: #CF2323;
+button {
+    background: none;
+    border: 0px;
+    color: #888;
+    font-size: 15px;
+    width: 60px;
+    margin: 10px 0 0;
+    font-family: Lato, sans-serif;
+    cursor: pointer;
+}
+button:hover {
+    color: #333;
+}
+input, button {
+    outline: none;
 }
 
-li input[type=text] {
-    display: none;
-}
-
-
-
-.editMode input[type=text] {
+/*----Container Styles-----*/
+.container {
     display: block;
+    width: 80%;
+    margin:6% auto auto ;
+    background: rgba(240, 248, 255, 0.42);
+    border-radius: 15px;
 }
-
-.editMode label {
-    display: none;
+.containerChild {
+    width: 33%;
+    display: inline-flex;
 }
-
 #contain {
     padding-bottom: 5%
 }
 
+/*----Messages and buttons Styles-----*/
+.warning {
+    color: #FF0000;
+    text-align: center;
+}
+.success {
+    color: #4DB84D;
+    text-align: center;
+}
+
+.delete:hover {
+    color: #CF2323;
+}
+
+#add:hover {
+    color: #0FC57C;
+}
+
+.pull-right {
+    float: right;
+}
+
+/*----Edit mode Styles-----*/
+.input-value {
+    display: none;
+}
+
+.editMode .input-value {
+    display: block;
+}
+.editMode label {
+    display: none;
+}
+
+/*----Tasks Styles-----*/
 #new-task {
     width: 50%;
     margin-left: 20%;
@@ -180,6 +151,19 @@ li input[type=text] {
     color: #888;
 }
 
+#сounter{
+    background-color: #e43e4f;
+    color: #fff;
+    letter-spacing: 0;
+    display: inline-block;
+    position: relative;
+    border-radius: 50%;
+    height: 22px;
+    width: 26px;
+    padding: 4px 0 0 0;
+}
+
+/*----media queries-----*/
 @media screen and (max-width: 550px) {
     .container {
         width: 90%;
