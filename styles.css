@@ -73,15 +73,15 @@ p > button:hover {
     display: inline-flex;
 }
 
-.message {
-    float: left;
-    margin-top: 10px;
-    display: none;
-}
-.message ul {
-    margin: 0;
-    padding: 0;
-}
+/*.message {*/
+    /*float: left;*/
+    /*margin-top: 10px;*/
+    /*display: none;*/
+/*}*/
+/*.message ul {*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+/*}*/
 .warning {
     color: #FF0000;
     text-align: center;

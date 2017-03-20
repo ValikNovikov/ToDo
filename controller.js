@@ -1,24 +1,17 @@
 $(document).ready(function () {
-
-
-
-	//------saving data to local Storage--------//
-	function localStorageService(id, type, title) {
-		var savedToDo = JSON.parse(localStorage.getItem('savedToDo'));
-		if (savedToDo) {
-			savedToDo.push({id: id, type: type, value: title});
-			localStorage.setItem('savedToDo', JSON.stringify(savedToDo));
-		} else {
-			localStorage.setItem('savedToDo', JSON.stringify([{id: id, type: type, value: title}]));
-		}
-
+	var savedToDo = JSON.parse(localStorage.getItem('savedToDo'));
+	if (!savedToDo) {
+		savedToDo = [];
 	}
 
-	//------getting data from local Storage--------//
-	function GetData() {
-		var savedItems = JSON.parse(localStorage.getItem('savedToDo'));
-		if (savedItems) {
-			savedItems.map(function (i) {
+
+//------saving and getting data to local Storage--------//
+	var localStorageService = {
+		setToDo: function () {
+			localStorage.setItem('savedToDo', JSON.stringify(savedToDo));
+		},
+		getToDo: function () {
+			savedToDo.map(function (i) {
 				var newTaskTitle = i.value;
 				var listItem = '<li id="li-with-id">';
 				listItem += '<input type="checkbox">';
@@ -27,27 +20,27 @@ $(document).ready(function () {
 				listItem += '<button class="edit">Edit</button>';
 				listItem += '<button class="delete">Delete</button>';
 				listItem += '</li>';
+
 				$('#incomplete-tasks').append(listItem);
 				$('#li-with-id').attr("id", i.id);
 
 			});
-
 		}
+	};
 
-	}
-
-	GetData();
+	localStorageService.getToDo();
 
 	//----show-hide message----//
-	function message(text, type) {
+	function showMessage(text, type) {
 		if (type === 'warning') {
-
-			$('.warning').html('<p class="fa fa-warning"></p>' + text).show();
-			$('.success').hide();
+			$('.message').removeClass('success');
+			$('.message').addClass('warning');
+			$('.message').html('<p class="fa fa-warning"></p>' + text).show();
 
 		} else {
-			$('.success').html('<p class="fa fa-check"></p>' + text).fadeIn('slow').delay(500).fadeOut();
-			$('.warning').hide();
+			$('.message').removeClass('warning');
+			$('.message').addClass('success');
+			$('.message').html('<p class="fa fa-check"></p>' + text).fadeIn('slow').delay(500).fadeOut();
 		}
 	}
 
@@ -55,30 +48,21 @@ $(document).ready(function () {
 	$('#add').on('click', function () {
 		var newTaskTitle = $('#new-task').val(),
 			id = new Date().getTime(),
-			incompleteTask = $('#incomplete-tasks'),
 			newTask = $('#new-task'),
-			inputTask = $('#input-task'),
-			listItem;
-		listItem = '<li id="li-with-id">';
-		listItem += '<input type="checkbox">';
-		listItem += '<label for="inputTask">' + newTaskTitle + '</label>';
-		listItem += '<input type="text" value="' + newTaskTitle + '"   class="input-value"/>';
-		listItem += '<button class="edit">Edit</button>';
-		listItem += '<button class="delete">Delete</button>';
-		listItem += '</li>';
+			inputTask = $('#input-task');
 
 
 		if (newTaskTitle === '') {
-			message('No task added', 'warning');
+			showMessage('No task added', 'warning');
 
 		} else {
-			message('Task added to list');
-			incompleteTask.append(listItem);
-
+			showMessage('Task added to list');
+			savedToDo.push({id: id, type: 'incompleted', value: newTaskTitle});
+			$('#incomplete-tasks').children().remove();
+			localStorageService.getToDo();
 			$('#li-with-id').attr("id", id);
 			newTask.val('');
-
-			localStorageService(id, 'incompleted', newTaskTitle)
+			localStorageService.setToDo()
 		}
 		updateCounter();
 	});
@@ -95,15 +79,14 @@ $(document).ready(function () {
 
 			var editTask = $(this).prev('input[class="input-value"]').val();
 			var editLabel = parent.find('label');
-			var labelText=editLabel.text();
+			var labelText = editLabel.text();
 			editLabel.html(editTask);
 			parent.removeClass('editMode');
 
-			var deleteValue = JSON.parse(localStorage.getItem('savedToDo'));
-			deleteValue.map(function (i, index) {
+			savedToDo.map(function (i, index) {
 				if (i.value == labelText) {
-					deleteValue[index].value=editTask;
-					localStorage.setItem('savedToDo', JSON.stringify(deleteValue));
+					savedToDo[index].value = editTask;
+					localStorageService.setToDo();
 				}
 
 			});
@@ -131,11 +114,11 @@ $(document).ready(function () {
 		var data = $(this).parent();
 		var liId = data.attr("id");
 		data.remove();
-		var deletingTask = JSON.parse(localStorage.getItem('savedToDo'));
-		deletingTask.map(function (i, index) {
+
+		savedToDo.map(function (i, index) {
 			if (i.id == liId) {
-				deletingTask.splice(index, 1);
-				localStorage.setItem('savedToDo', JSON.stringify(deletingTask));
+				savedToDo.splice(index, 1);
+				localStorageService.setToDo();
 			}
 
 		});
