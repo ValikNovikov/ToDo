@@ -82,6 +82,7 @@ class ToDo {
 				this.taskList.splice(index, 1);
 				this.incompleteTasks.find("li[data-id='" + id + "']").remove();
 			}else if(i.id == id && i.type == 'completed'){
+				this.taskList.splice(index, 1);
 				this.completedTasks.find("li[data-id='" + id + "']").remove();
 			}
 		});
