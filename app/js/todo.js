@@ -140,9 +140,12 @@ class ToDo {
 		taskArr.forEach((i) => {
 			if(i.type == 'incomplete' ){
 				remainTask.push(i);
-				$('#сounter').hide().text(remainTask.length).fadeIn(300)
+				$('#сounter').hide().text(remainTask.length).fadeIn(300);
+			}else{
+				$('#сounter').hide().text(0).fadeIn(100);
 			}
 		});
+
 
 	}
 }
