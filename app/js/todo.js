@@ -78,6 +78,7 @@ class ToDo {
 //------delete task method------//
 	deleteTask(id){
 		this.taskList.forEach((i,index) => {
+
 			if (i.id == id && i.type == 'incomplete') {
 				this.taskList.splice(index, 1);
 				this.incompleteTasks.find("li[data-id='" + id + "']").remove();
@@ -104,14 +105,17 @@ class ToDo {
 				this.setToDo(this.taskList)
 			}
 		});
+
 		this.updateCounter(this.taskList);
 	}
 
 	//------updating DOM when task status changed method------//
 	updateUiOnStatusChange(removeFrom, addTo, id){
 		let $task = removeFrom.find("li[data-id='" + id + "']");
+		
 		$task.remove();
 		addTo.append($task);
+
 	}
 
 	//------show message  method------//
@@ -132,6 +136,7 @@ class ToDo {
 	//-------update counter method------//
 	updateCounter(taskArr){
 		let remainTask =[];
+
 		taskArr.forEach((i) => {
 			if(i.type == 'incomplete' ){
 				remainTask.push(i);
