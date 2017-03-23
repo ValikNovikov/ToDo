@@ -78,13 +78,16 @@ class ToDo {
 //------delete task method------//
 	deleteTask(id){
 		this.taskList.forEach((i,index) => {
-			if (i.id == id) {
+			if (i.id == id && i.type == 'incomplete') {
 				this.taskList.splice(index, 1);
+				this.incompleteTasks.find("li[data-id='" + id + "']").remove();
+			}else if(i.id == id && i.type == 'completed'){
+				this.completedTasks.find("li[data-id='" + id + "']").remove();
 			}
 		});
 
 		this.setToDo(this.taskList);
-		this.incompleteTasks.find("li[data-id='" + id + "']").remove();
+
 	}
 
 //-------change task type method------//
@@ -130,10 +133,11 @@ class ToDo {
 		let remainTask =[];
 		taskArr.forEach((i) => {
 			if(i.type == 'incomplete' ){
-				remainTask.push(i)
+				remainTask.push(i);
+				$('#сounter').hide().text(remainTask.length).fadeIn(300)
 			}
 		});
-		$('#сounter').hide().text(remainTask.length).fadeIn(300)
+
 	}
 }
 
