@@ -28,7 +28,7 @@ gulp.task("build-js", function () {
 });
 
 gulp.task('watch', function(){
-	gulp.watch('app/js/**/*.js',['build-js']),
+	gulp.watch('app/js/**/*.js',['build-js']);
 	gulp.watch('app/assets/styles/**/*.css',['index']);
 	gulp.watch("index.html").on('change', browserSync.reload);
 });
