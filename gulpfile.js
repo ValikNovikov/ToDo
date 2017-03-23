@@ -33,7 +33,7 @@ gulp.task('watch', function(){
 	gulp.watch("index.html").on('change', browserSync.reload);
 });
 
-gulp.task('serve',['watch','inject'], function() {
+gulp.task('serve',['watch','inject','build-js'], function() {
 	browserSync.init({
 		server: {
 			baseDir: './'
