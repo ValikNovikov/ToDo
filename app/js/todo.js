@@ -154,13 +154,16 @@ class ToDo {
 $(document).ready(function () {
 	let todo = new ToDo(),
 	  savedToDo = JSON.parse(localStorage.getItem('savedToDo'));
+
 		if (!savedToDo) savedToDo = [];
+
     todo.getToDo(savedToDo);
     todo.updateCounter(savedToDo);
 
 	//--------add new To Do--------//
 	$('#add').on('click', function () {
 		let newTaskTitle = $('#new-task').val();
+
 		if (newTaskTitle === '') {
 			todo.showMessage('No task added', 'warning');
 		}else{
@@ -170,7 +173,6 @@ $(document).ready(function () {
 
 	//-------edit task------//
 	$('.task').on('click', '.js_edit', function () {
-
 		let parent = $(this).parent(),
 			id = parent.data('id'),
 			editTask = $(this).prev('input[class="input-value"]').val();
@@ -184,7 +186,6 @@ $(document).ready(function () {
 
 		//-------change task type------//
 	}).on('change', '.js_changeType', function () {
-
 		let parent = $(this).parent(),
 		   liId = parent.data("id");
 
@@ -192,8 +193,9 @@ $(document).ready(function () {
 
 	//------delete task------//
 	}).on('click', '.js_delete', function () {
-		var data = $(this).parent();
-		var liId = data.data("id");
+		let data = $(this).parent(),
+		  liId = data.data("id");
+
 		todo.deleteTask(liId);
 		todo.updateCounter(savedToDo);
 	});
