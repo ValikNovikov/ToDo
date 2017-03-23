@@ -40,7 +40,6 @@ $(document).ready(function () {
 			message.removeClass('success');
 			message.addClass('warning');
 			message.html('<p class="fa fa-warning"></p>' + text).show();
-
 		} else {
 			message.removeClass('warning');
 			message.addClass('success');
